@@ -8,7 +8,8 @@
     var specialChar = ["!@#$%^&*()<>?/.,:;=+"];
     var num = [123456789];
 
-    var promptPassword;
+    var promptPassword = "";
+    var chosenChar = "";
 
 // Assignment code here
 
@@ -17,8 +18,8 @@
 var generateBtn = document.querySelector("#generate");
 
 function generatePassword () {
-    var chosenChar= [];
-    var newPassword = [];
+    var chosenChar= "";
+    var newPassword = "";
 
     var promptPassword = window.prompt ("How many characters would you like your password to contain? Must be between 8 and 128 characters.")
 
@@ -33,6 +34,7 @@ function generatePassword () {
     window.alert("Password must be between 8 and 128 characters!")
     return ("Please press generate password again.")
     }
+
 
     if (
         confirmLowercase === false && confirmUppercase === false && confirmSpecialChar === false && confirmNum === false ){
@@ -49,20 +51,20 @@ function generatePassword () {
     else if (confirmLowercase && confirmUppercase && confirmNum) {
         chosenChar = lowercase + uppercase + num;
     }
+    else if (confirmLowercase &&  confirmSpecialChar && confirmNum) {
+        chosenChar = lowercase + specialChar + num;
+    }
+    else if (confirmUppercase && confirmSpecialChar && confirmNum) {
+        chosenChar = uppercase + specialChar + num;
+    }
     else if (confirmLowercase && confirmUppercase) {
         chosenChar = lowercase + uppercase;
-    }
-    else if (confirmLowercase) {
-        chosenChar = lowercase;
     }
     else if (confirmLowercase && confirmNum) {
         chosenChar = lowercase + num;
     }
     else if (confirmLowercase && confirmSpecialChar) {
         chosenChar = lowercase + specialChar;
-    }
-    else if (confirmUppercase && confirmSpecialChar && confirmNum) {
-        chosenChar = uppercase + specialChar + num;
     }
     else if (confirmUppercase && confirmNum) {
         chosenChar = uppercase + num;
@@ -73,6 +75,9 @@ function generatePassword () {
     else if (confirmSpecialChar && confirmNum) {
         chosenChar = specialChar + num;
     }
+    else if (confirmLowercase) {
+        chosenChar = lowercase;
+    }
     else if (confirmNum) {
         chosenChar = num;
     }
@@ -82,19 +87,16 @@ function generatePassword () {
     else if (confirmSpecialChar){
         chosenChar = specialChar;
     }
-    else if (confirmLowercase &&  confirmSpecialChar && confirmNum) {
-        chosenChar = lowercase + specialChar + num;
+
+
+    for (i = 0; i < promptPassword; i++) {
+        newPassword = newPassword + chosenChar[Math.floor(Math.random() * chosenChar.length)];
+        console.log(newPassword)
     }
 
-    var generator = [];
-
-    for (var i = 0; i < promptPassword; i++) {
-        var random = chosenChar[Math.floor(Math.random() * chosenChar.length)];
-        generator.push(random);
-} 
-    var newPassword = generator.join("");
     return newPassword;
-    }
+}
+
 // Write password to the #password input
 function writePassword() {
     var password = generatePassword();
