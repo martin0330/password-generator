@@ -9,6 +9,7 @@ A website generating a random password
 *JS
 
 ## Website
+https://martin0330.github.io/password-generator/
 
 ## Contributions
 Made by Martin Cruz
