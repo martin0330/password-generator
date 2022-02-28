@@ -91,7 +91,6 @@ function generatePassword () {
 
     for (i = 0; i < promptPassword; i++) {
         newPassword = newPassword + chosenChar[Math.floor(Math.random() * chosenChar.length)];
-        console.log(newPassword)
     }
 
     return newPassword;
